@@ -192,11 +192,11 @@ void AngeleadEditor::resized()
     place ("Filter",     544, 92, 4, { C (2), K (10), K (11), K (12) });
     place ("Modulation", 804, 92, 2, { K (13), K (14), K (15), C (3), K (16) });
 
-    place ("Retro / Drive", 24, 264, 3, { K (17), K (18), K (19) });
-    place ("Chorus · Delay", 224, 264, 4, { K (20), K (21), K (22), K (23) });
-    place ("Reverb",  494, 264, 2, { K (24), K (25) });
-    place ("Output",  644, 264, 1, { K (26) });
-    scopeArea = { 724, 270, 212, 100 };
+    place ("Retro / Drive", 24, 290, 3, { K (17), K (18), K (19) });
+    place ("Chorus · Delay", 224, 290, 4, { K (20), K (21), K (22), K (23) });
+    place ("Reverb",  494, 290, 2, { K (24), K (25) });
+    place ("Output",  644, 290, 1, { K (26) });
+    scopeArea = { 284, 212, 508, 70 };
 
     keyboard.setBounds (24, H - 148, W - 48, 124);
 }

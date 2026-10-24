@@ -82,6 +82,7 @@ struct Choice : public juce::Component
         : name (text)
     {
         box.addItemList (dynamic_cast<juce::AudioParameterChoice*> (apvts.getParameter (id))->choices, 1);
+        box.setColour (juce::ComboBox::textColourId, juce::Colour (0xff111111));
         addAndMakeVisible (box);
         att = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment> (apvts, id, box);
     }

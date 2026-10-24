@@ -363,3 +363,7 @@ void AngeleadProcessor::buildPresets()
     add ("Retro", "Coin Pickup",{ {"wave1",1},{"pw",.5f},{"cutoff",16000},{"fenv",0},{"arp",1},{"arpRate",22},{"attack",.001f},{"decay",.12f},{"sustain",.3f},{"release",.15f},{"crush",5},{"rate",2},{"delayMix",.15f} });
     add ("Retro", "Game Over",  { {"wave1",5},{"wave2",4},{"mix2",.15f},{"glide",.6f},{"cutoff",5000},{"fenv",0},{"attack",.002f},{"decay",.4f},{"sustain",.5f},{"release",.5f},{"crush",5},{"rate",5},{"reverbMix",.2f} });
 }
+
+//==============================================================================
+// Plugin entry point (this was missing and caused LNK2001 createPluginFilter)
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter() { return new AngeleadProcessor(); }
