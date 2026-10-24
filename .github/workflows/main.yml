@@ -22,12 +22,18 @@ jobs:
       - name: Collect VST3
         shell: pwsh
         run: |
-          $vst3 = Get-ChildItem -Path build -Recurse -Directory -Filter 'Angelead.vst3' | Select-Object -First 1
-          if (-not $vst3) { throw 'Angelead.vst3 not found' }
-          New-Item -ItemType Directory -Force -Path out | Out-Null
-          Copy-Item $vst3.FullName -Destination out -Recurse
+          $dll = Get-ChildItem -Path build -Recurse -File -Filter 'Angelead.vst3' | Select-Object -First 1
+          if (-not $dll) { throw 'Angelead.vst3 binary not found' }
+          if ($dll.Length -lt 100000) { throw "Binary looks too small: $($dll.Length) bytes" }
+          Write-Host "Found: $($dll.FullName) ($($dll.Length) bytes)"
+          $dest = 'out/Angelead.vst3/Contents/x86_64-win'
+          New-Item -ItemType Directory -Force -Path $dest | Out-Null
+          Copy-Item $dll.FullName -Destination "$dest/Angelead.vst3"
+          Get-ChildItem out -Recurse | Select-Object FullName, Length
 
       - uses: actions/upload-artifact@v4
         with:
           name: Angelead-VST3
           path: out
+          include-hidden-files: true
+          if-no-files-found: error
